@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assureur INTIA</title>
+</head>
+<body>
+    <h1>bienvenue a votre compte d'Assureur. succursale de <%= a %></h1>
+
+    <h2>ajouter un client</h2>
+    <form action="/ajouterclient" method="post">
+        Nom: <input type="text" name="nom_client" placeholder="nom du client" required>
+        Numero de telephone: <input type="number" name="num" required>
+        succursale: <input type="text" name="lieu" value="<%= a %>" placeholder="lieu d'enregistrement" required readonly>
+        <input type="submit" value="ajouter">
+    </form>
+
+    <h2>Clients sans assurances</h2>
+    <% for( let i = 0; i < unassured.length; i++ ) { %>
+        <table>
+            <th>
+                <tr>
+                    <td>nom: <%= unassured[i].nom %>, tel: <%= unassured[i].numero_tel %></td>
+                </tr>
+            </th>
+            <tbody>
+                <form action="/ajouterassurance" method="post">
+                    <tr>
+                        <td>
+                            durée
+                            <input type="number" name="duree" required>
+                        </td>
+                        <td>
+                            montant de l'assurance
+                            <input type="number" name="montant" required>
+                        </td>
+                        <td>
+                            type d'assurance
+                            <select name="type" id="">
+                                <option value="assurance vie">assurance vie</option>
+                                <option value="assurance santé">assurance santé</option>
+                                <option value="assurance batiment">assurance batiment</option>
+                            </select>
+                            <input type="hidden" name="clientID" value="<%= unassured[i].client_id %>">
+                            <input type="hidden" name="assureurID" value="<%= b %>">
+                        </td>
+                        <td>
+                            <input type="submit" value="assurer">
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+        <br>
+    <% } %>
+
+</body>
+</html>
