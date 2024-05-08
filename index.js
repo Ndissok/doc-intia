@@ -108,16 +108,29 @@ app.post('/ajouterassurance', ass_auth, (req, res) =>{
         }
         else{
             conn.query("UPDATE client SET assure = 2 WHERE client_id = ?", clientID, (error, results) =>{
-                if(err){
+                if(error){
                     console.log(error)
                     res.send('internal server error: '+error)
-            }else{
-                res.redirect('/assureur')
-            }
+                }else{
+                    res.redirect('/assureur')
+                }
             })
         }
     })
 
+})
+
+app.post('/supprimer', ass_auth, (req, res) =>{
+    let client_id = req.body.client_id
+    let sql = "DELETE FROM client WHERE client_id = ?"
+    conn.query(sql, client_id, (err, result) =>{
+        if(err){
+            console.log(err)
+            res.send('internal server error: '+err)
+        }else{
+            res.redirect('/assureur')
+        }
+    })
 })
 
 app.get('*', (req, res) => {

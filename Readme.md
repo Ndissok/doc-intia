@@ -1,0 +1,3 @@
+pour lancer l'application Intia assurance, servez vous du fichier .env.example dans racine du projet pour créer un 
+blueprint pour vos variables d'environement. Allez dans un terminal et puis localisez le dossier de la racine du projet 
+et executez la commande npm install. Cette commande permettra d'identifier les dépendences du projet a partir du fichier package.json et les installera dans le projet.

@@ -52,6 +52,49 @@
                 </form>
             </tbody>
         </table>
+        <form action="/supprimer" method="post">
+            <input type="hidden" name="client_id" value="<%= unassured[i].client_id %>">
+            <input type="submit" value="supprimer">
+        </form>
+        <br>
+    <% } %>
+
+    <h2>Clients deja assurés</h2>
+    <% for( let i = 0; i < assured.length; i++ ) { %>
+        <table>
+            <th>
+                <tr>
+                    <td>nom: <%= assured[i].nom %>, tel: <%= assured[i].numero_tel %></td>
+                </tr>
+            </th>
+            <tbody>
+                <form action="/ajouterassurance" method="post">
+                    <tr>
+                        <td>
+                            durée
+                            <input value="" type="number" name="duree" required>
+                        </td>
+                        <td>
+                            montant de l'assurance
+                            <input type="number" name="montant" required>
+                        </td>
+                        <td>
+                            type d'assurance
+                            <select name="type" id="">
+                                <option value="assurance vie">assurance vie</option>
+                                <option value="assurance santé">assurance santé</option>
+                                <option value="assurance batiment">assurance batiment</option>
+                            </select>
+                            <input type="hidden" name="clientID" value="<%= assured[i].client_id %>">
+                            <input type="hidden" name="assureurID" value="<%= b %>">
+                        </td>
+                        <td>
+                            <input type="submit" value="assurer">
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
         <br>
     <% } %>
 
