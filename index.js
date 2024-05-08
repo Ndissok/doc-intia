@@ -15,7 +15,8 @@ app.use(session({
         sameSite: 'strict',
         httpOnly: true,
     }
-}));
+}));//ephemeral session, not persistent accross server restarts
+
 app.use('/public', express.static('public'));
 app.use(bodyparser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
